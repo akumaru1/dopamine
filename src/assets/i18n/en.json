@@ -138,6 +138,7 @@
     "by-track-title-ascending": "A-Z",
     "by-track-title-descending": "Z-A",
     "by-album": "By album",
+    "by-album-year-descending": "By album (newest first)",
     "by-rating": "By rating",
     "by": "by",
     "playing-with-dopamine": "Playing with Dopamine",

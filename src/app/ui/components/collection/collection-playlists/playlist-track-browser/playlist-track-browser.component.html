@@ -16,6 +16,7 @@
             <app-track
                 [track]="track"
                 canShowHeader="true"
+                [isPlaylistView]="true"
                 (dblclick)="playbackService.enqueueAndPlayTracksStartingFromGivenTrackAsync(this.orderedTracks, track)"
                 (contextmenu)="onPlaylistTrackContextMenu($event, track)"
             ></app-track>

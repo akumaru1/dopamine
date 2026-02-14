@@ -47,7 +47,7 @@ export class CollectionArtistsComponent implements OnInit, OnDestroy {
         private logger: Logger,
     ) {}
 
-    public trackOrders: TrackOrder[] = [TrackOrder.byTrackTitleAscending, TrackOrder.byTrackTitleDescending, TrackOrder.byAlbum];
+    public trackOrders: TrackOrder[] = [TrackOrder.byTrackTitleAscending, TrackOrder.byTrackTitleDescending, TrackOrder.byAlbum, TrackOrder.byAlbumYearDescending];
 
     public leftPaneSize: number = this.settings.artistsLeftPaneWidthPercent;
     public centerPaneSize: number = 100 - this.settings.artistsLeftPaneWidthPercent - this.settings.artistsRightPaneWidthPercent;

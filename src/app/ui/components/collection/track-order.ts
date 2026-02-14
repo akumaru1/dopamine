@@ -6,6 +6,7 @@ export enum TrackOrder {
     byDateCreatedAscending = 5,
     byDateCreatedDescending = 6,
     none = 7,
+    byAlbumYearDescending = 8,
 }
 
 export function trackOrderKey(trackOrder: TrackOrder): string {
@@ -24,5 +25,7 @@ export function trackOrderKey(trackOrder: TrackOrder): string {
             return 'newest-first';
         case TrackOrder.none:
             return 'none';
+        case TrackOrder.byAlbumYearDescending:
+            return 'by-album-year-descending';
     }
 }

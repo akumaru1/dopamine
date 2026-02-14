@@ -8,6 +8,7 @@ describe('TrackOrder', () => {
             [TrackOrder.byDateCreatedAscending, 'oldest-first'],
             [TrackOrder.byDateCreatedDescending, 'newest-first'],
             [TrackOrder.byAlbum, 'by-album'],
+            [TrackOrder.byAlbumYearDescending, 'by-album-year-descending'],
             [TrackOrder.byRating, 'by-rating'],
             [TrackOrder.none, 'none'],
         ].forEach((pair) => {

@@ -105,4 +105,35 @@ export class TrackSorter {
 
         return sorted;
     }
+
+    public sortByAlbumYearDescending(tracks: TrackModel[]): TrackModel[] {
+        const timer = new Timer();
+        timer.start();
+
+        const sorted: TrackModel[] = sort(tracks).by([
+            {
+                desc: (t) => t.year,
+            },
+            {
+                asc: (t) => t.albumKey,
+                comparer: new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare,
+            },
+            {
+                asc: (t) => t.discNumber,
+            },
+            {
+                asc: (t) => t.number,
+            },
+        ]);
+
+        timer.stop();
+
+        this.logger.info(
+            `Finished sorting tracks by album year descending. Time required: ${timer.elapsedMilliseconds} ms`,
+            'TrackSorter',
+            'sortByAlbumYearDescending',
+        );
+
+        return sorted;
+    }
 }

@@ -1,15 +1,30 @@
 <div class="d-flex flex-column">
     <div class="d-flex flex-column mt-3 mb-1" *ngIf="this.canShowHeader && track.showHeader">
-        <div class="largest pb-2 ellipsis" matTooltip="{{ track.albumArtists }}">{{ track.albumArtists }}</div>
-        <div class="secondary-text ellipsis" *ngIf="!(track.discNumber > 0 && track.discCount > 1)" matTooltip="{{ track.albumTitle }}">
-            {{ track.albumTitle }}
-        </div>
-        <div
-            class="secondary-text ellipsis"
-            *ngIf="track.discNumber > 0 && track.discCount > 1"
-            matTooltip="{{ track.albumTitle }} ({{ track.discNumber }}/{{ track.discCount }})"
-        >
-            {{ track.albumTitle }} ({{ track.discNumber }}/{{ track.discCount }})
+        <div class="app-track__header d-flex flex-row align-items-flex-start">
+            <img
+                *ngIf="albumArtworkPath"
+                class="app-track__header-album-cover"
+                [attr.src]="albumArtworkPath | imageToFilePath"
+                [alt]="track.albumTitle"
+                loading="lazy"
+                draggable="false"
+            />
+            <div *ngIf="!albumArtworkPath" class="app-track__header-album-cover-placeholder"></div>
+            <div class="flex-1">
+                <div class="largest pb-2 ellipsis" *ngIf="!(track.discNumber > 0 && track.discCount > 1)" matTooltip="{{ track.albumTitle }}">
+                    {{ track.albumTitle }}
+                </div>
+                <div
+                    class="largest pb-2 ellipsis"
+                    *ngIf="track.discNumber > 0 && track.discCount > 1"
+                    matTooltip="{{ track.albumTitle }} ({{ track.discNumber }}/{{ track.discCount }})"
+                >
+                    {{ track.albumTitle }} ({{ track.discNumber }}/{{ track.discCount }})
+                </div>
+                <div class="secondary-text ellipsis" matTooltip="{{ track.albumArtists }}">
+                    {{ track.albumArtists }}
+                </div>
+            </div>
         </div>
     </div>
     <div
@@ -19,8 +34,19 @@
         [matRippleTrigger]="trigger"
         #trigger
     >
-        <div class="app-track__left secondary-text">
-            {{ track.number | formatTrackNumber }}
+        <div class="app-track__left" [ngClass]="{ 'app-track__left--playlist': isPlaylistView }">
+            <div *ngIf="!isPlaylistView" class="secondary-text">
+                {{ track.number | formatTrackNumber }}
+            </div>
+            <img
+                *ngIf="isPlaylistView && albumArtworkPath"
+                class="app-track__album-cover"
+                [attr.src]="albumArtworkPath | imageToFilePath"
+                [alt]="track.albumTitle"
+                loading="lazy"
+                draggable="false"
+            />
+            <div *ngIf="isPlaylistView && !albumArtworkPath" class="app-track__album-cover-placeholder"></div>
         </div>
         <div class="app-track__right">
             <div class="app-track__top">
